@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation Requirements
+1. Node v12 LTS version
+2. Yarn Latest version
+3. Lerna [link](https://lerna.js.org){:target="_blank"}
 
 
 ## Available Scripts Initialization Setup
@@ -18,21 +22,21 @@ Start Core Container
 
 ### `yarn app-core`
 
-Runs the app in the development mode.
+Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Start Application One
 
 ### `yarn app-one`
 
-Runs the app in the development mode.
+Runs the app in the development mode.<br />
 Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 Start Application Two
 
 ### `yarn app-two`
 
-Runs the app in the development mode.
+Runs the app in the development mode.<br />
 Open [http://localhost:3002](http://localhost:3002) to view it in the browser.
 
 The page will reload if you make edits.<br />
