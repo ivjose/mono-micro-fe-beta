@@ -2,10 +2,10 @@
   "name": "platform-app",
   "version": "1.0.0",
   "private": true,
-  "config-overrides-path": "node_modules/react-app-rewire-micro-frontends",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/react-app-rewire-micro-frontends", "**/react-app-rewire-micro-frontends/**"]
+  },
   "license": "MIT",
   "devDependencies": {
     "lerna": "^3.19.0"
