@@ -1,0 +1,23 @@
+{
+  "name": "platform-app",
+  "version": "1.0.0",
+  "private": true,
+  "config-overrides-path": "node_modules/react-app-rewire-micro-frontends",
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.19.0"
+  },
+  "scripts": {
+    "app-core": "lerna run start --scope=app-core",
+    "app-one": "lerna run start --scope=app-one",
+    "app-two": "lerna run start --scope=app-two",
+    "build": "lerna run build",
+    "clean": "yarn clean:artifacts && yarn clean:packages && yarn clean:root",
+    "clean:artifacts": "lerna run clean --parallel",
+    "clean:packages": "lerna clean --yes",
+    "clean:root": "rm -rf node_modules"
+  }
+}
