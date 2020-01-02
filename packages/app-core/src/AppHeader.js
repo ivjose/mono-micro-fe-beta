@@ -10,7 +10,10 @@ const AppHeader = () => (
     <nav>
       <ol className="center-column">
         <li>
-          <NavLink to="/">App One</NavLink>
+          <NavLink to="/">App Core</NavLink>
+        </li>
+        <li>
+          <NavLink to="/app-one">App One</NavLink>
         </li>
         <li>
           <NavLink to="/app-two">App Two</NavLink>

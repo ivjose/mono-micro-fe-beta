@@ -1,26 +1,28 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Link, Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import "./App.css";
 
-function App() {
+const defaultHistory = createBrowserHistory();
+
+function App({ history }) {
   console.log(window);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>App Two</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AppTwo
-        </a>
-      </header>
-    </div>
+    <Router history={history || defaultHistory}>
+      <div className="App">
+        <header className="App-header">
+          <h1>App Two</h1>
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <Link to="/app-one">App One</Link>
+          <br />
+          <Link to="/app-one/view">App View</Link>
+        </header>
+      </div>
+    </Router>
   );
 }
 

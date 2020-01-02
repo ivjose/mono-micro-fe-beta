@@ -1,44 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-class MicroFrontend extends React.Component {
-  componentDidMount() {
-    const { name, host, document } = this.props;
-    const scriptId = `micro-frontend-script-${name}`;
+export const MicroFrontend = ({ name, host, history, document, window, location }) => {
+  useEffect(() => {
+    function fetchMicroFile() {
+      console.log("DDDDDDDDD host", host, location);
 
-    if (document.getElementById(scriptId)) {
-      this.renderMicroFrontend();
-      return;
+      const scriptId = `micro-frontend-script-${name}`;
+
+      if (document.getElementById(scriptId)) {
+        renderMicroFrontend();
+        return;
+      }
+
+      fetch(`${host}/asset-manifest.json`)
+        .then(res => res.json())
+        .then(manifest => {
+          const script = document.createElement("script");
+          script.id = scriptId;
+          script.crossOrigin = "";
+          script.src = `${host}${manifest.files["main.js"]}`;
+          script.onload = renderMicroFrontend;
+
+          document.head.appendChild(script);
+        });
     }
 
-    fetch(`${host}/asset-manifest.json`)
-      .then(res => res.json())
-      .then(manifest => {
-        const script = document.createElement("script");
-        script.id = scriptId;
-        script.crossOrigin = "";
-        script.src = `${host}${manifest.files["main.js"]}`;
-        script.onload = this.renderMicroFrontend;
+    fetchMicroFile();
+    return () => {
+      window[`unmount${name}`](`${name}-container`);
+    };
+  }, [name, host, location]);
 
-        document.head.appendChild(script);
-      });
-  }
-
-  componentWillUnmount() {
-    const { name, window } = this.props;
-
-    window[`unmount${name}`](`${name}-container`);
-  }
-
-  renderMicroFrontend = () => {
-    const { name, window, history } = this.props;
-
+  function renderMicroFrontend() {
     window[`render${name}`](`${name}-container`, history);
-  };
-
-  render() {
-    return <main id={`${this.props.name}-container`} />;
   }
-}
+
+  return <main id={`${name}-container`} />;
+};
 
 MicroFrontend.defaultProps = {
   document,

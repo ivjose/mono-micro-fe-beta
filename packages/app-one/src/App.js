@@ -1,27 +1,26 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Link, Router, Route, Switch } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import AppOneList from "./container/AppOneList";
+import AppOneView from "./container/AppOneView";
 import "./App.css";
 
-function App() {
+// const AppOneList = React.lazy(() => import("./container/AppOneList"));
+
+const defaultHistory = createBrowserHistory();
+
+function App({ history }) {
   console.log(window);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>App One</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          APP ONE
-        </a>
-      </header>
-    </div>
+    <Router history={history || defaultHistory}>
+      <React.Suspense fallback={<div>Liad</div>}>
+        <Switch>
+          <Route exact path="/app-one" component={AppOneList} />
+          <Route exact path="/app-one/view" component={AppOneView} />
+        </Switch>
+      </React.Suspense>
+    </Router>
   );
 }
 
